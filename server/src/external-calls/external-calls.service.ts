@@ -1,8 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { OctokitService } from 'nestjs-octokit';
 import { ConfigService } from '@nestjs/config';
-import { GitParamsDto } from './dto/git-params.dto';
 import { UtilService } from 'src/utils/app-util.service';
+import { GetCommitParamsDto } from 'src/commit-history/dto/get-commit-params.dto';
+import * as _ from 'lodash';
+import { Commit } from 'src/commit-history/dto/commit.dto';
 
 @Injectable()
 export class ExternalCallsService {
@@ -12,9 +14,11 @@ export class ExternalCallsService {
     private readonly utilService: UtilService,
   ) {}
 
-  async findAllCommits(params?: GitParamsDto) {
+  async findAllCommits(
+    params?: GetCommitParamsDto,
+  ): Promise<{ commit: Commit }> {
     try {
-      const { data } = await this.octokitService.request(
+      const { data: response } = await this.octokitService.request(
         'GET /repos/{owner}/{repo}/commits',
         {
           owner: this.configService.get<string>('GITHUB_REPO_OWNER'),
@@ -24,7 +28,8 @@ export class ExternalCallsService {
         },
       );
 
-      return this.utilService.fromSnakeToCamel(data);
+      const commits = response.map((data) => _.pick(data, ['commit']));
+      return this.utilService.fromSnakeToCamel(commits);
     } catch (e) {
       throw new BadRequestException(
         'An error occurred retrieving list of commits. \n Params: ',
