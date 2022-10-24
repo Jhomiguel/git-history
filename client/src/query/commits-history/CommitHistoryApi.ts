@@ -1,4 +1,4 @@
-import { axios } from "../../config/baseAxios";
+import { axios } from "../../configs/baseAxios";
 import { ICommit } from "../../models/ICommit";
 
 export const findCommitHistory = async (): Promise<ICommit[]> => {

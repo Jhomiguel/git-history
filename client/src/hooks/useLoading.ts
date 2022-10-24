@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useLoadingContext } from "../context/loading/LoadingContext";
+import { useLoadingContext } from "../contexts/loading/LoadingContext";
 
 export const useLoading = (loading: boolean) => {
   const context = useLoadingContext();

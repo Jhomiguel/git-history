@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import LoadingContextProvider from "./context/loading/LoadingContext";
+import LoadingContextProvider from "./contexts/loading/LoadingContext";
 
 const queryClient = new QueryClient({
   defaultOptions: {
