@@ -6,8 +6,7 @@ async function bootstrap() {
   const PORT = process.env.NODE_PORT || 4000;
   const app = await NestFactory.create(AppModule);
   app.enableVersioning({
-    type: VersioningType.HEADER,
-    header: 'api-version',
+    type: VersioningType.URI,
   });
   await app.listen(PORT, () =>
     console.log(`Server is running on port: ${PORT}`),
