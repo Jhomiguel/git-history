@@ -4,7 +4,7 @@ import { SnakeCamelPayload } from './dto/snake-camel.dto';
 
 @Injectable()
 export class UtilService {
-  fromSnakeToCamel(data: SnakeCamelPayload) {
+  fromSnakeToCamel(data: SnakeCamelPayload): SnakeCamelPayload {
     if (_.isArray(data)) {
       return _.map(data, (v) => this.fromSnakeToCamel(v));
     }
@@ -19,7 +19,7 @@ export class UtilService {
     return data;
   }
 
-  fromCamelToSnake(data: SnakeCamelPayload) {
+  fromCamelToSnake(data: SnakeCamelPayload): SnakeCamelPayload {
     if (_.isArray(data)) {
       return _.map(data, (v) => this.fromCamelToSnake(v));
     }
