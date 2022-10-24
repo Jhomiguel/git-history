@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import * as _ from 'lodash';
-import { SnakeToCamelPayload } from './dto/snake-to-camel.dto';
+import { SnakeCamelPayload } from './dto/snake-camel.dto';
 
 @Injectable()
 export class UtilService {
-  fromSnakeToCamel(data: SnakeToCamelPayload) {
+  fromSnakeToCamel(data: SnakeCamelPayload) {
     if (_.isArray(data)) {
       return _.map(data, (v) => this.fromSnakeToCamel(v));
     }
@@ -13,6 +13,21 @@ export class UtilService {
       return _(data)
         .mapKeys((v, k) => _.camelCase(k))
         .mapValues((v, k) => this.fromSnakeToCamel(v))
+        .value();
+    }
+
+    return data;
+  }
+
+  fromCamelToSnake(data: SnakeCamelPayload) {
+    if (_.isArray(data)) {
+      return _.map(data, (v) => this.fromCamelToSnake(v));
+    }
+
+    if (_.isObject(data)) {
+      return _(data)
+        .mapKeys((v, k) => _.snakeCase(k))
+        .mapValues((v, k) => this.fromCamelToSnake(v))
         .value();
     }
 
