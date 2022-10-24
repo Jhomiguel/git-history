@@ -1,7 +1,7 @@
-export interface GitParamsDto {
-  sha: string;
+export interface GetCommitParamsDto {
+  sha?: string;
   path: string;
-  author: string;
+  author?: string;
   since: string;
   until: string;
   perPage: number;

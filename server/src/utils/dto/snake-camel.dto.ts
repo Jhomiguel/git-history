@@ -1,3 +1,1 @@
-export type SnakeCamelPayload =
-  | Record<string, unknown>
-  | Record<string, unknown>[];
+export type SnakeCamelPayload = Record<string, any> | Record<string, any>[];
