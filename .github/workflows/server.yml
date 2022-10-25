@@ -1,4 +1,4 @@
-name: Client Deployment Workflow
+name: Server Deployment Workflow
 
 on:
   push:
@@ -6,13 +6,13 @@ on:
       - development
       - main
     paths:
-      - "client/**/*"
+      - "server/**/*"
   pull_request:
     branches:
       - development
       - main
     paths:
-      - "client/**/*"
+      - "server/**/*"
 
 jobs:
   deploy:
@@ -24,14 +24,17 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - run: npm run install-client
-      - run: npm run build-client --if-present
-        env:
-          REACT_APP_API_URL: ${{secrets.API_URL}}
+      - run: npm run install-server
+      - run: npm run build-server --if-present
+      - run: npm run test-server
       - name: Deploying to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          appdir: "client"
+          appdir: "server"
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: "git-history-client"
+          heroku_app_name: "git-history-server"
           heroku_email: "jhomiguelflorianmendez20@gmail.com"
+        env:
+          GITHUB_REPO_OWNER: Jhomiguel
+          GITHUB_REPO_NAME: git-history
+          GITHUB_AUTH_TOKEN: ${{secrets.GITHUB_AUTH_TOKEN}}
