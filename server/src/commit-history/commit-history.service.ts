@@ -6,7 +6,9 @@ import { GetCommitParamsDto } from './dto/get-commit-params.dto';
 @Injectable()
 export class CommitHistoryService {
   constructor(private readonly externalCallService: ExternalCallsService) {}
-  async findAll(params?: GetCommitParamsDto): Promise<GetCommitHistoryDto[]> {
+  async findAll(
+    params?: Partial<GetCommitParamsDto>,
+  ): Promise<GetCommitHistoryDto[]> {
     try {
       return await this.externalCallService.findAllCommits(params);
     } catch (e) {
