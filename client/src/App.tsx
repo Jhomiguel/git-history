@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query/devtools";
 import LoadingContextProvider from "./contexts/loading/LoadingContext";
 import CommitHistoryPage from "./pages/CommitHistory";
+import Layout from "./components/Layout";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +23,8 @@ function App() {
       <LoadingContextProvider>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<CommitHistoryPage />} />
+            <Route path="/" element={<Layout />} />
+            <Route path="/commits" element={<CommitHistoryPage />} />
           </Routes>
         </BrowserRouter>
       </LoadingContextProvider>

@@ -7,12 +7,15 @@ import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import CommitIcon from "@mui/icons-material/Commit";
+import { useNavigate } from "react-router-dom";
+import { ListItemIcon } from "@mui/material";
 
 const drawerWidth = 240;
 
 const Sidebar: React.FC = () => {
+  const navigate = useNavigate();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
@@ -36,14 +39,14 @@ const Sidebar: React.FC = () => {
         <Toolbar />
         <Divider />
         <List>
-          {["Commits"].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon></ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItem key={"Commits"} disablePadding>
+            <ListItemButton onClick={() => navigate("/commits")}>
+              <ListItemIcon>
+                <CommitIcon />
+              </ListItemIcon>
+              <ListItemText primary={"Commits"} />
+            </ListItemButton>
+          </ListItem>
         </List>
       </Drawer>
     </Box>
