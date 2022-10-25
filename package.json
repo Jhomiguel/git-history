@@ -7,8 +7,12 @@
     "install-client": "npm install --prefix client",
     "install": "npm run install-server && npm run install-client",
     "server": "npm run start:dev --prefix server",
+    "server-prod": "npm run start:prod --prefix server",
     "client": "npm start --prefix client",
-    "watch": "npm run client & npm run server"
+    "watch": "npm run client & npm run server",
+    "build-client": "npm run build --prefix client",
+    "build-server": "npm run build --prefix server",
+    "test-server": "npm run test:cov --prefix server"
   },
   "keywords": [],
   "author": "Jhomiguel Florian",

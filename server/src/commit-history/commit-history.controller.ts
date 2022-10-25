@@ -1,5 +1,6 @@
 import { Controller, Get, Query } from '@nestjs/common';
 import { CommitHistoryService } from './commit-history.service';
+import { GetCommitHistoryDto } from './dto/get-commit-history.dto';
 import { GetCommitParamsDto } from './dto/get-commit-params.dto';
 
 @Controller({
@@ -10,7 +11,9 @@ export class CommitHistoryController {
   constructor(private readonly commitHistoryService: CommitHistoryService) {}
 
   @Get()
-  findAll(@Query() params: GetCommitParamsDto) {
+  findAll(
+    @Query() params?: Partial<GetCommitParamsDto>,
+  ): Promise<GetCommitHistoryDto[]> {
     return this.commitHistoryService.findAll(params);
   }
 }
