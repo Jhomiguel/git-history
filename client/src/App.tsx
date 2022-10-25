@@ -1,11 +1,12 @@
 import { QueryClient, QueryClientProvider } from "react-query";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactQueryDevtools } from "react-query/devtools";
 import LoadingContextProvider from "./contexts/loading/LoadingContext";
+import CommitHistoryPage from "./pages/CommitHistory";
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      cacheTime: 0,
       refetchOnMount: false,
       refetchOnReconnect: false,
       refetchOnWindowFocus: false,
@@ -19,7 +20,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <LoadingContextProvider>
-        <div>hello world</div>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<CommitHistoryPage />} />
+          </Routes>
+        </BrowserRouter>
       </LoadingContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
