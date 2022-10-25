@@ -11,7 +11,9 @@ export class CommitHistoryController {
   constructor(private readonly commitHistoryService: CommitHistoryService) {}
 
   @Get()
-  findAll(@Query() params: GetCommitParamsDto): Promise<GetCommitHistoryDto[]> {
+  findAll(
+    @Query() params?: Partial<GetCommitParamsDto>,
+  ): Promise<GetCommitHistoryDto[]> {
     return this.commitHistoryService.findAll(params);
   }
 }
