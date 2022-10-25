@@ -65,6 +65,7 @@ const CommitHistoryTable = () => {
         columns={columns}
         pageSize={5}
         rowsPerPageOptions={[5]}
+        disableSelectionOnClick
       />
     </div>
   );
