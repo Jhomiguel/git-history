@@ -15,7 +15,7 @@ export class ExternalCallsService {
   ) {}
 
   async findAllCommits(
-    params?: GetCommitParamsDto,
+    params?: Partial<GetCommitParamsDto>,
   ): Promise<GetCommitHistoryDto[]> {
     try {
       const { data: response } = await this.octokitService.request(
@@ -28,6 +28,7 @@ export class ExternalCallsService {
         },
       );
 
+      console.log(response);
       const commits = response.map((data) => _.pick(data, ['commit', 'sha']));
       return this.utilService.fromSnakeToCamel(commits);
     } catch (e) {
