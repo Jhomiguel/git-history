@@ -26,6 +26,8 @@ jobs:
           node-version: 16.x
       - run: npm run install-client
       - run: npm run build-client --if-present
+        env:
+          REACT_APP_API_URL: ${{secrets.API_URL}}
       - name: Deploying to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
