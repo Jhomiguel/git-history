@@ -35,7 +35,7 @@ jobs:
           heroku_app_name: "git-history-server"
           heroku_email: "jhomiguelflorianmendez20@gmail.com"
           branch: "development"
-          procfile: "web: npm run server-prod"
+          procfile: "web: npm run start:prod"
         env:
           GITHUB_REPO_OWNER: Jhomiguel
           GITHUB_REPO_NAME: git-history
