@@ -5,9 +5,11 @@ import { AppModule } from './app.module';
 async function bootstrap() {
   const PORT = process.env.NODE_PORT || 4000;
   const app = await NestFactory.create(AppModule);
+
   app.enableVersioning({
     type: VersioningType.URI,
   });
+  app.enableCors();
   await app.listen(PORT, () =>
     console.log(`Server is running on port: ${PORT}`),
   );
