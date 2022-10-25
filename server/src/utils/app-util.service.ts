@@ -18,19 +18,4 @@ export class UtilService {
 
     return data;
   }
-
-  fromCamelToSnake(data: SnakeCamelPayload) {
-    if (_.isArray(data)) {
-      return _.map(data, (v) => this.fromCamelToSnake(v));
-    }
-
-    if (_.isObject(data)) {
-      return _(data)
-        .mapKeys((v, k) => _.snakeCase(k))
-        .mapValues((v, k) => this.fromCamelToSnake(v))
-        .value();
-    }
-
-    return data;
-  }
 }

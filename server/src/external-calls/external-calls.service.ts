@@ -1,10 +1,10 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { OctokitService } from 'nestjs-octokit';
 import { ConfigService } from '@nestjs/config';
+import * as _ from 'lodash';
 import { UtilService } from 'src/utils/app-util.service';
 import { GetCommitParamsDto } from 'src/commit-history/dto/get-commit-params.dto';
-import * as _ from 'lodash';
-import { Commit } from 'src/commit-history/dto/commit.dto';
+import { GetCommitHistoryDto } from 'src/commit-history/dto/get-commit-history.dto';
 
 @Injectable()
 export class ExternalCallsService {
@@ -16,7 +16,7 @@ export class ExternalCallsService {
 
   async findAllCommits(
     params?: GetCommitParamsDto,
-  ): Promise<{ commit: Commit }> {
+  ): Promise<GetCommitHistoryDto[]> {
     try {
       const { data: response } = await this.octokitService.request(
         'GET /repos/{owner}/{repo}/commits',
@@ -28,7 +28,7 @@ export class ExternalCallsService {
         },
       );
 
-      const commits = response.map((data) => _.pick(data, ['commit']));
+      const commits = response.map((data) => _.pick(data, ['commit', 'sha']));
       return this.utilService.fromSnakeToCamel(commits);
     } catch (e) {
       throw new BadRequestException(
