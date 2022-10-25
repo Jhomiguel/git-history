@@ -7,6 +7,7 @@
     "install-client": "npm install --prefix client",
     "install": "npm run install-server && npm run install-client",
     "server": "npm run start:dev --prefix server",
+    "server-prod": "npm run start:prod --prefix server",
     "client": "npm start --prefix client",
     "watch": "npm run client & npm run server",
     "build-client": "npm run build --prefix client",

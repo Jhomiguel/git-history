@@ -39,3 +39,4 @@ jobs:
           GITHUB_REPO_OWNER: Jhomiguel
           GITHUB_REPO_NAME: git-history
           GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: "npm run prod-server"
