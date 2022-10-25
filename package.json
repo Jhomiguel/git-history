@@ -10,7 +10,8 @@
     "client": "npm start --prefix client",
     "watch": "npm run client & npm run server",
     "build-client": "npm run build --prefix client",
-    "build-server": "npm run build --prefix server"
+    "build-server": "npm run build --prefix server",
+    "test-server": "npm run test:cov --prefix server"
   },
   "keywords": [],
   "author": "Jhomiguel Florian",
