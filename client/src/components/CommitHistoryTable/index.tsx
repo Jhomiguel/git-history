@@ -1,4 +1,5 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { useDateHelper } from "../../hooks/useDateHelper";
 import { useCommitHistory } from "../../query/commits-history/CommitHistoryQuery";
 
 const columns: GridColDef[] = [
@@ -26,6 +27,7 @@ const columns: GridColDef[] = [
 
 const CommitHistoryTable = () => {
   const { data } = useCommitHistory();
+  const { formatDate } = useDateHelper();
 
   return (
     <div style={{ height: 400, width: "100%" }}>
@@ -36,7 +38,7 @@ const CommitHistoryTable = () => {
               id: commit?.message,
               message: commit?.message,
               author: commit.author?.name,
-              date: commit.committer?.date,
+              date: formatDate(new Date(commit.committer?.date as Date)),
             };
           }) || []
         }
