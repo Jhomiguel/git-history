@@ -2,21 +2,25 @@ import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import { useCommitHistory } from "../../query/commits-history/CommitHistoryQuery";
 
 const columns: GridColDef[] = [
-  { field: "author", headerName: "Author", width: 170 },
+  {
+    field: "author",
+    headerName: "Author",
+    width: 170,
+    headerAlign: "center",
+    align: "center",
+  },
   {
     field: "message",
     headerName: "Message",
-    width: 700,
+    width: 1000,
+    headerAlign: "center",
   },
   {
     field: "date",
     headerName: "Date",
-    width: 170,
-  },
-  {
-    field: "Details",
-    headerName: "Details",
-    width: 170,
+    width: 200,
+    headerAlign: "center",
+    align: "center",
   },
 ];
 
